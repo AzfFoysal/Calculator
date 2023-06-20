@@ -1,9 +1,14 @@
 package com.example.calculator;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
@@ -129,5 +134,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.exit) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Do You Want To Exit?");
+            builder.setCancelable(true);
+
+            builder.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int i) {
+                    finish();
+                }
+            });
+            builder.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int i) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+        if (id == R.id.details){
+
+            AlertDialog.Builder alerter = new AlertDialog.Builder(this);
+            LayoutInflater factory = LayoutInflater.from(this);
+            final View view = factory.inflate(R.layout.activity_details, null);
+            alerter.setView(view);
+
+            alerter.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int i) {
+                    dialog.cancel();
+                }
+            });
+            alerter.show();
+        }
+        return true;
+    }
 
 }
