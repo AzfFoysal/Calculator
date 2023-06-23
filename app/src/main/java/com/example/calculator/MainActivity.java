@@ -102,17 +102,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         if(buttonText.equals("C")){
+            if(dataToCalculate.isEmpty())
+            {
+                solutionTv.setText("");
+                resultTv.setText("0");
+            }
             dataToCalculate = dataToCalculate.substring(0,dataToCalculate.length()-1);
         }
         else {
             dataToCalculate = dataToCalculate+buttonText;
         }
 
+
         solutionTv.setText(dataToCalculate);
 
         String finalResult = getResult(dataToCalculate);
 
-        if(!finalResult.equals("Error")){
+        if(!finalResult.equals("Err")){
             resultTv.setText(finalResult);
         }
 
@@ -130,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return finalResult;
         }
         catch (Exception e){
-            return "";
+            return "Err";
         }
     }
 
