@@ -102,12 +102,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         if(buttonText.equals("C")){
+            dataToCalculate = dataToCalculate.substring(0,dataToCalculate.length()-1);
             if(dataToCalculate.isEmpty())
             {
                 solutionTv.setText("");
                 resultTv.setText("0");
+                return;
             }
-            dataToCalculate = dataToCalculate.substring(0,dataToCalculate.length()-1);
         }
         else {
             dataToCalculate = dataToCalculate+buttonText;
