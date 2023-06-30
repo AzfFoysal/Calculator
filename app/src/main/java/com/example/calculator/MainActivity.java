@@ -185,6 +185,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
             alerter.show();
         }
+        if (id == R.id.howtodraw){
+
+            AlertDialog.Builder alerter = new AlertDialog.Builder(this);
+            LayoutInflater factory = LayoutInflater.from(this);
+            final View view = factory.inflate(R.layout.activity_howto_popout, null);
+            alerter.setView(view);
+
+            alerter.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int i) {
+                    dialog.cancel();
+                }
+            });
+            alerter.show();
+        }
         return true;
     }
 
